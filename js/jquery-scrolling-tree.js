@@ -337,11 +337,13 @@ if (typeof jQuery !== 'function') {throw 'ScrollingTree loaded before jQuery; be
 		// Call this to select an item by ID.
 		this.selectNode = function(id, redraw)
 		{
-			this.current_selection = id;
+			var node = this.getNodeById(id);
 			
-			this.container.trigger('nodeSelected');
-			
-			if (redraw) {this.draw();}
+			if (node) {
+				this.current_selection = id;
+				this.container.trigger('nodeSelected');
+				if (redraw) {this.draw();}
+			}
 		};
 		
 		
@@ -361,6 +363,8 @@ if (typeof jQuery !== 'function') {throw 'ScrollingTree loaded before jQuery; be
 		// State
 		this.tree = tree; // driving data
 		this.opts = $.extend({}, $.scrollingTree.defaults, opts); // compiled options
+		this.current_selection = null; // currently selected value
+		
 		$c.data('scrollingTree', this);
 		
 		var callbacks = ['getNodeId', 'getParentId', 'nodeMarkup', 'getNumChildren', 'getNodeName', 'filterNode'];
