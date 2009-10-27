@@ -337,13 +337,9 @@ if (typeof jQuery !== 'function') {throw 'ScrollingTree loaded before jQuery; be
 		// Call this to select an item by ID.
 		this.selectNode = function(id, redraw)
 		{
-			var node = this.getNodeById(id);
-			
-			if (node) {
-				this.current_selection = id;
-				this.container.trigger('nodeSelected');
-				if (redraw) {this.draw();}
-			}
+			this.current_selection = id;
+			this.container.trigger('nodeSelected');
+			if (redraw) {this.draw();}
 		};
 		
 		
