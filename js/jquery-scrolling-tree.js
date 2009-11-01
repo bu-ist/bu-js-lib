@@ -282,6 +282,9 @@ if (typeof jQuery !== 'function') {throw 'ScrollingTree loaded before jQuery; be
 				selected = (e.data.st.getSelection() == value),
 				$li = $target.parents('li:first');
 			
+			// IE7 hack - radio buttons don't select properly for some reason.
+			$target.parents('ul:first').find('input:radio').attr('checked', false);
+			$target.attr('checked', 'checked');
 			
 			$li.siblings().removeClass(e.data.st.opts.selectedClass);
 			$li.addClass(e.data.st.opts.selectedClass);
