@@ -98,15 +98,11 @@ if (typeof jQuery !== 'function') {throw 'ScrollingTree loaded before jQuery; be
 					drill, label;
 					children = this.getChildren(node);
 				
-				label = this.hasChildren(node) ?
-					$('<span>')
-						.append(this.nodeMarkup(node))
-						.addClass(this.opts.drillClass)
-						.bind('click', {st: this, target: li}, this.drillDown)
-					:
-					$('<label>')
-						.append(this.nodeMarkup(node))
-						.attr('for', this.opts.inputName + '_' + id)
+				label = $('<span>').append(this.nodeMarkup(node));
+				if (this.hasChildren(node)) {
+					label.addClass(this.opts.drillClass)
+						.bind('click', {st: this, target: li}, this.drillDown);
+				}
 				li.append(label);
 
 				if (this.opts.inputName) {radio.attr('name', this.opts.inputName);}
