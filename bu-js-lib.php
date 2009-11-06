@@ -27,7 +27,7 @@ class BuJavascriptLib
 		
 		$scripts->add('jquery-dev', $js . 'jquery-1.3.2.dev.js', array(), '1.3.2');
 		$scripts->add('jquery-nested-sortable', $js . 'inestedsortable-1.0.1.pack.js', array('jquery'), '1.0.1');
-		//$scripts->add('jquery-scrolling-tree', $js . 'jquery-scrolling-tree.js', array('jquery'), '1.0');
+		$scripts->add('jquery-scrolling-tree', $js . 'jquery-scrolling-tree.js', array('jquery'), '1.0');
 		$scripts->add('jquery-dimensions', $js . 'jquery-dimensions.1.0b2.js', array('jquery'), '1.0b2');
 		$scripts->add('jquery-tooltip', $js . 'jquery-tooltip.1.3.js', array('jquery', 'jquery-dimensions'), '1.3');
 		$scripts->add('jquery-qtip', $js . 'jquery.qtip-1.0.0-rc3.min.js', array('jquery'), '1.0.0-rc3');
