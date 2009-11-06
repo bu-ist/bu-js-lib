@@ -89,9 +89,8 @@ if (typeof jQuery !== 'function') {throw 'ScrollingTree loaded before jQuery; be
 			for (i = 0; i < nodes.length; i++) {
 				var node = nodes[i],
 					id = this.getNodeId(node),
-					checked = (id == this.current_selection) ? 'checked' : '',
 					radio = $('<input type="radio"/>')
-						.attr({'value': id, 'id': this.opts.inputName + '_' + id, 'checked': checked})
+						.attr({'value': id, 'id': this.opts.inputName + '_' + id})
 						.bind('click', {st: this}, this.itemSelected),
 					li = $('<li>')
 						.append(radio),
@@ -113,6 +112,7 @@ if (typeof jQuery !== 'function') {throw 'ScrollingTree loaded before jQuery; be
 			}
 			
 			this.list_container.html(this.the_list);
+			jQuery('#' + this.opts.inputName + '_' + this.current_selection).attr('checked', 'checked');
 			
 			bc = this.makeBreadcrumbs();
 			this.bc.html('');
