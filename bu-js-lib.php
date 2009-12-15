@@ -44,6 +44,8 @@ class BuJavascriptLib
 		$scripts->add('jquery-ui', $js . 'jquery-ui-1.7.2.custom.min.js', array('jquery'), 1.72);
 		$scripts->add('jquery-validation', $js . 'jquery.validate.min.js', array('jquery', 'jquery-form'), 1.55);
 		$scripts->add('jquery-validation-dev', $js . 'jquery.validate.js', array('jquery', 'jquery-form'), 1.55);
+		$scripts->add('jquery-hoverintent', $js . 'jquery.hoverIntent.minified.js', array('jquery'), 5);
+		$scripts->add('jquery-hoverintent-dev', $js . 'jquery.hoverIntent.js', array('jquery'), 5);
 
 		/* primary navigation autowidth */
 		$scripts->add('nav-autowidth', $js . 'nav-autowidth.js', array('jquery'), 1.0);
