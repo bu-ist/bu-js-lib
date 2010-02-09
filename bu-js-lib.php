@@ -31,8 +31,7 @@ class BuJavascriptLib
 		$scripts->add('jquery-dimensions', $js . 'jquery-dimensions.1.0b2.js', array('jquery'), '1.0b2');
 		$scripts->add('jquery-tooltip', $js . 'jquery-tooltip.1.3.js', array('jquery', 'jquery-dimensions'), '1.3');
 		$scripts->add('jquery-qtip', $js . 'jquery.qtip-1.0.0-rc3.min.js', array('jquery'), '1.0.0-rc3');
-		$scripts->add('jquery-qtip-dev', $js . 'jquery.qtip-1.0.0-rc3.js', array('jquery'), '1.0.0-rc3');
-		
+		$scripts->add('jquery-qtip-dev', $js . 'jquery.qtip-1.0.0-rc3.js', array('jquery'), '1.0.0-rc3');	
 		$scripts->add('jquery-tree', $js . 'jstree/jquery.tree.min.js', array('jquery'), 0.99);
 		$scripts->add('jquery-tree-dev', $js . 'jstree/jquery.tree.js', array('jquery'), 0.99);
 		$scripts->add('jquery-tree-contextmenu', $js . 'jstree/plugins/jquery.tree.contextmenu.js', array('jquery'), 0.99);
@@ -46,6 +45,8 @@ class BuJavascriptLib
 		$scripts->add('jquery-validation-dev', $js . 'jquery.validate.js', array('jquery', 'jquery-form'), 1.55);
 		$scripts->add('jquery-hoverintent', $js . 'jquery.hoverIntent.minified.js', array('jquery'), 5);
 		$scripts->add('jquery-hoverintent-dev', $js . 'jquery.hoverIntent.js', array('jquery'), 5);
+		$scripts->add('jquery-autocomplete', $js . 'jquery.autocomplete.min.js', array('jquery'), '1.1');
+		$scripts->add('jquery-autocomplete-dev', $js . 'jquery.autocomplete.js', array('jquery'), '1.1');
 
 		/* primary navigation autowidth */
 		$scripts->add('nav-autowidth', $js . 'nav-autowidth.js', array('jquery'), 1.0);
@@ -67,6 +68,7 @@ class BuJavascriptLib
 		$styles->add('jquery-tree-classic', $js . 'jstree/themes/classic/style.css', FALSE, 0.99);	
 		$styles->add('jquery-ui', $css . 'jquery-ui-1.7.2.custom.css', FALSE, 1.72);
 		$styles->add('jquery-ui-lightness', $css . 'ui-lightness/style.css', FALSE, 1);
+		$styles->add('jquery-autocomplete', $css . 'jquery.autocomplete.css', FALSE, 1.1);
 	}
 }
 add_action('wp_default_scripts', array('BuJavascriptLib', 'registerJS'));
