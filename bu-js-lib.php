@@ -47,6 +47,7 @@ class BuJavascriptLib
 		$scripts->add('jquery-hoverintent-dev', $js . 'jquery.hoverIntent.js', array('jquery'), 5);
 		$scripts->add('jquery-autocomplete', $js . 'jquery.autocomplete.min.js', array('jquery'), '1.1');
 		$scripts->add('jquery-autocomplete-dev', $js . 'jquery.autocomplete.js', array('jquery'), '1.1');
+		$scripts->add('jquery-scroller', $js . 'jquery.tools.scroller.min.js', array('jquery'), '1.1.2', array('group' => 1));
 
 		/* primary navigation autowidth */
 		$scripts->add('nav-autowidth', $js . 'nav-autowidth.js', array('jquery'), 1.0);
