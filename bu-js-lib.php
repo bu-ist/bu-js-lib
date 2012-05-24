@@ -3,7 +3,7 @@
 Plugin Name: BU Javascript Library
 Plugin URI: http://www.bu.edu/nis
 Description: Manages and registers several shared JavaScript libraries and themes, which may in turn be used by custom BU plugins to provide consistent theming and functionality.
-Author: NIS
+Author: Boston University (IS&T)
 Author URI: http://www.bu.edu/nis
 Version: 1.0
 */
