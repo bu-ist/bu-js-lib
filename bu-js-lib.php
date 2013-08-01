@@ -48,6 +48,7 @@ class BuJavascriptLib
 		$scripts->add('jquery-autocomplete', $js . 'jquery.autocomplete.min.js', array('jquery'), '1.1');
 		$scripts->add('jquery-autocomplete-dev', $js . 'jquery.autocomplete.js', array('jquery'), '1.1');
 		$scripts->add('jquery-scroller', $js . 'jquery.tools.scroller.min.js', array('jquery'), '1.1.2', array('group' => 1));
+		$scripts->add('bu-modal', self::$url . '/packages/bu-modal/bu-modal.dev.js', array('jquery'), '0.1');
 
 		/* primary navigation autowidth */
 		$scripts->add('nav-autowidth', $js . 'nav-autowidth.js', array('jquery'), 1.0);
@@ -70,6 +71,7 @@ class BuJavascriptLib
 		$styles->add('jquery-ui', $css . 'jquery-ui-1.7.2.custom.css', FALSE, 1.72);
 		$styles->add('jquery-ui-lightness', $css . 'ui-lightness/style.css', FALSE, 1);
 		$styles->add('jquery-autocomplete', $css . 'jquery.autocomplete.css', FALSE, 1.1);
+		$styles->add('bu-modal', self::$url . '/packages/bu-modal/css/bu-modal.css', FALSE, '0.1');
 	}
 }
 add_action('wp_default_scripts', array('BuJavascriptLib', 'registerJS'));
