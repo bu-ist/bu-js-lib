@@ -9,17 +9,18 @@ jQuery(document).ready(function($) {
 			return new BuModal(args);
 		}
 		
-		if (!args.el) {
-			throw new TypeError('Could not identify modal element.');
-		}
-		
 		this.beforeOpen = args['beforeOpen'] ? args['beforeOpen'] : function() {};
 		this.afterOpen = args['afterOpen'] ? args['afterOpen'] : function() {};
+		this.beforeLoad = args['beforeLoad'] ? args['beforeLoad'] : function() {};
+		this.afterLoad = args['afterLoad'] ? args['afterLoad'] : function() {};
 		this.beforeClose = args['beforeClose'] ? args['beforeClose'] : function() {};
 		this.afterClose = args['afterClose'] ? args['afterClose'] : function() {};
 		this.buttons = args['buttons'] ? $(args['buttons']) : $();
 		this.background = args['background'] ? args['background'] : '#ffffff';
-		this.el = $(args.el);
+		this.el = args['el'] ? $(args['el']) : $('<div>').appendTo(document.body);
+		this.content_url = args['content_url'] ? args['content_url'] : '';
+		this.width = args['width'] ? args['width'] : 'fit-content';
+		this.height = args['width'] ? args['height'] : 'fit-content';
 		
 		// An element can have multiple modals bound to it, we re-use the bu_modal container.
 		this.ui = this.el.parents('.bu_modal');
@@ -37,7 +38,7 @@ jQuery(document).ready(function($) {
 		this.bindHandlers();
 	};
 
-	BuModal.version = 1.3;
+	BuModal.version = 1.4;
 
 	BuModal.bg = $('<div class="bu_modal_bg"></div>').prependTo(document.getElementsByTagName('body')[0]).hide();	
 	BuModal.active_modal = false;
@@ -86,13 +87,18 @@ jQuery(document).ready(function($) {
 	};
 	
 	BuModal.prototype.open = function() {
-		var w, h, halfW, halfH;
+		var w, h, halfW, halfH, modal = this;
+
+		this.ui.css({
+			'width': this.width,
+			'height': this.height
+		});
 
 		this.beforeOpen();
 
 		this.el.show();
 		this.ui.bg.show();
-		this.ui.addClass('bu_modal_active').show();
+		this.ui.addClass('active').show();
 
 		w = this.ui.outerWidth();
 		h = this.ui.outerHeight();
@@ -108,12 +114,34 @@ jQuery(document).ready(function($) {
 		BuModal.active_modal = this;
 
 		this.afterOpen();
+
+		if (this.content_url) {
+			this.beforeLoad();
+			this.ui.addClass('loading_content');
+			this.xhr = $.get(this.content_url, function(response) {
+				var content_type = modal.xhr.getResponseHeader('Content-Type');
+				modal.xhr = false;
+
+				if (content_type.split(';')[0] == 'text/html') {
+					modal.el.html(response);
+				} else {
+					modal.el.text(response);
+				}
+				
+				modal.ui.removeClass('loading_content');
+				modal.afterLoad();
+			});
+		}
 	};
 	
 	BuModal.prototype.close = function() {
 		this.beforeClose();
 
-		this.ui.removeClass('bu_modal_active').hide();
+		if (this.xhr) {
+			this.xhr.abort();
+			this.xhr = false;
+		}
+		this.ui.removeClass('active').hide();
 		this.ui.bg.hide();
 		this.isOpen = false;
 		BuModal.active_modal = false;
