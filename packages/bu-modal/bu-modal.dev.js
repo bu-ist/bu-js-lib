@@ -13,25 +13,51 @@ jQuery(document).ready(function($) {
 			throw new TypeError('Could not identify modal element.');
 		}
 		
-		var $el = $(args.el);
-		$el.wrap('<div class="bu_modal" style="display:none;"></div>');
-		$el.before('<div class="postboxheader"><a class="close_btn" href="">X</a></div>');
-		
-		this.ui = $el.parent('.bu_modal');
-		
 		this.beforeOpen = args['beforeOpen'] ? args['beforeOpen'] : function() {};
 		this.afterOpen = args['afterOpen'] ? args['afterOpen'] : function() {};
 		this.beforeClose = args['beforeClose'] ? args['beforeClose'] : function() {};
 		this.afterClose = args['afterClose'] ? args['afterClose'] : function() {};
+		this.buttons = args['buttons'] ? $(args['buttons']) : $();
+		this.background = args['background'] ? args['background'] : '#ffffff';
+		this.el = $(args.el);
 		
+		// An element can have multiple modals bound to it, we re-use the bu_modal container.
+		this.ui = this.el.parents('.bu_modal');
+		if (!this.ui.length) {
+			this.el.wrap('<div class="bu_modal" style="display:none;"></div>');
+			this.el.before('<div class="postboxheader"><a class="close_btn" href="">X</a></div>');
+			this.ui = this.el.parents('.bu_modal');
+		}
+		
+		if (this.background) {
+			this.ui.css('background', this.background);
+		}
+
 		this.init();
 		this.bindHandlers();
 	};
+
+	BuModal.version = 1.3;
+
+	BuModal.bg = $('<div class="bu_modal_bg"></div>').prependTo(document.getElementsByTagName('body')[0]).hide();	
+	BuModal.active_modal = false;
+	
+	BuModal.close = function() {
+		if (BuModal.active_modal) {
+			BuModal.active_modal.close();
+		}
+	}
 	
 	BuModal.prototype.init = function() {
-		this.closeButton = this.ui.find('.close_btn');
-		this.ui.bg = $('<div class="bu_modal_bg"></div>').insertBefore(this.ui).hide();
-		this.ui.hide();
+		var modal = this;
+		modal.closeButton = this.ui.find('.close_btn');
+		modal.ui.bg = BuModal.bg;
+		modal.ui.hide();
+		modal.buttons.each(function() {
+			$(this).click(function() {
+				modal.open();
+			});
+		});
 	};
 	
 	BuModal.prototype.isOpen = false;
@@ -64,8 +90,9 @@ jQuery(document).ready(function($) {
 
 		this.beforeOpen();
 
+		this.el.show();
 		this.ui.bg.show();
-		this.ui.addClass('bu_modal').show();
+		this.ui.addClass('bu_modal_active').show();
 
 		w = this.ui.outerWidth();
 		h = this.ui.outerHeight();
@@ -74,9 +101,11 @@ jQuery(document).ready(function($) {
 		halfH = parseInt(h / 2);
 
 		this.ui.css({
-			'marginLeft' : '-' + halfW + 'px'
+			'marginLeft' : '-' + halfW + 'px',
+			'marginRight': halfW + 'px'
 		});
 		this.isOpen = true;
+		BuModal.active_modal = this;
 
 		this.afterOpen();
 	};
@@ -84,9 +113,10 @@ jQuery(document).ready(function($) {
 	BuModal.prototype.close = function() {
 		this.beforeClose();
 
-		this.ui.removeClass('bu_modal').hide();
+		this.ui.removeClass('bu_modal_active').hide();
 		this.ui.bg.hide();
 		this.isOpen = false;
+		BuModal.active_modal = false;
 
 		this.afterClose();
 	};

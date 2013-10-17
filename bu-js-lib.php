@@ -48,7 +48,7 @@ class BuJavascriptLib
 		$scripts->add('jquery-autocomplete', $js . 'jquery.autocomplete.min.js', array('jquery'), '1.1');
 		$scripts->add('jquery-autocomplete-dev', $js . 'jquery.autocomplete.js', array('jquery'), '1.1');
 		$scripts->add('jquery-scroller', $js . 'jquery.tools.scroller.min.js', array('jquery'), '1.1.2', array('group' => 1));
-		$scripts->add('bu-modal', self::$url . '/packages/bu-modal/bu-modal.js', array('jquery'), '0.1');
+		$scripts->add('bu-modal', self::$url . '/packages/bu-modal/bu-modal.js', array('jquery'), '1.3');
 
 		/* primary navigation autowidth */
 		$scripts->add('nav-autowidth', $js . 'nav-autowidth.js', array('jquery'), 1.0);

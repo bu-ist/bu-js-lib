@@ -8,34 +8,32 @@
 	z-index:100; /* to top WP admin menu */
 }
 
-.bu_modal {
-	height:90%;
+.bu_modal_active {
 	left: 50%;
-	padding-top: 1.5em;
+	
 	position:fixed;
-	top:0;
+	top:65px;
 	z-index:110;
 }
 
-.bu_modal .postboxheader {
+.bu_modal_active .postboxheader {
 	background: #000;
-    height: 24px;
-    left: 0;
-    margin: 0 auto;
     overflow: hidden;
     position: relative;
-    top: 20px;
-    width: 692px;
+    
+    display: block;
+	width: 100%;
+    height: 24px;
     z-index: 110;
 }
 
-.bu_modal .wrap {
+.bu_modal_active .wrap {
 	margin:0 auto;
 	padding:20px;
 	width:650px;
 }
 
-.bu_modal .postboxheader a.close_btn {
+.bu_modal_active .postboxheader a.close_btn {
     color: #EFEFEF;
     display: block;
     float: right;
