@@ -25,10 +25,6 @@ class BU_Javascript_Library {
 		$scripts->add('jquery-qtip-dev', $js . 'jquery.qtip-1.0.0-rc3.js', array('jquery'), '1.0.0-rc3');
 		$scripts->add('jquery-scroller', $js . 'jquery.tools.scroller.min.js', array('jquery'), '1.1.2', array('group' => 1));
 
-		// TODO: Remove once sites/www.bu.edu/tech/bu-my-help stops enqueing
-		$scripts->add('jquery-tree', $js . 'jstree/jquery.tree.min.js', array('jquery'), 0.99);
-		$scripts->add('jquery-tree-dev', $js . 'jstree/jquery.tree.js', array('jquery'), 0.99);
-
 		// Custom BU scripts
 		$scripts->add('nav-autowidth', $js . 'nav-autowidth.js', array('jquery'), 1.0);
 		$scripts->add('bu-modal', self::$url . '/packages/bu-modal/bu-modal.dev.js', array('jquery'), '1.4');
@@ -39,10 +35,6 @@ class BU_Javascript_Library {
 		self::$url = sprintf('%s/mu-plugins/bu-js-lib', WP_CONTENT_URL);
 		$js = self::$url . '/js/';
 		$css = self::$url . '/css/';
-
-		// TODO: Remove once sites/www.bu.edu/tech/bu-my-help stops enqueing
-		$styles->add('jquery-tree', $js . 'jstree/themes/default/style.css', FALSE, 0.99);
-		$styles->add('jquery-tree-classic', $js . 'jstree/themes/classic/style.css', FALSE, 0.99);
 
 		// Custom BU scripts
 		$styles->add('bu-modal', self::$url . '/packages/bu-modal/css/bu-modal.css', FALSE, '0.1');
