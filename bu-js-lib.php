@@ -39,7 +39,7 @@ class BU_Javascript_Library {
 		// Shared jQuery UI stylesheet
 		// @see http://core.trac.wordpress.org/ticket/18909
 		// @see https://github.com/helenhousandi/wp-admin-jquery-ui
-		if ( is_user_logged_in() && 'classic' == get_user_option( 'admin_color' ) ) {
+		if ( function_exists( 'is_user_logged_in' ) && is_user_logged_in() && 'classic' == get_user_option( 'admin_color' ) ) {
 			$styles->add( 'bu-jquery-ui', $css . '/jquery-ui-classic.css', array(), BU_JS_LIB_VERSION );
 		} else {
 			$styles->add( 'bu-jquery-ui', $css . '/jquery-ui-fresh.css', array(), BU_JS_LIB_VERSION );
