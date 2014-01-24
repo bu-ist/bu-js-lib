@@ -17,6 +17,7 @@
 	
 	position:fixed;
 	top:65px;
+	bottom:65px;
 	z-index:110;
 	overflow-y: auto;
 }
