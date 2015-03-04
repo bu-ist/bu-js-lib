@@ -5,12 +5,12 @@ Plugin URI: http://www.bu.edu/nis
 Description: Manages and registers several shared JavaScript libraries and themes, which may in turn be used by custom BU plugins to provide consistent theming and functionality.
 Author: Boston University (IS&T)
 Author URI: http://www.bu.edu/nis
-Version: 2.0.3
+Version: 2.0.4
 */
 
 // This plugin is loaded (use this for graceful degradation).
 define( 'BU_PLUGIN_JAVASCRIPT_LIBRARY', true );
-define( 'BU_JS_LIB_VERSION', '2.0.3' );
+define( 'BU_JS_LIB_VERSION', '2.0.4' );
 
 class BU_Javascript_Library {
 
