@@ -53,5 +53,3 @@ class BU_Javascript_Library {
 
 add_action( 'wp_default_scripts', array( 'BU_Javascript_Library', 'register_js' ) );
 add_action( 'wp_default_styles', array( 'BU_Javascript_Library', 'register_css' ) );
-
-?>
