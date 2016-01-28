@@ -20,7 +20,7 @@ jQuery(document).ready(function($) {
 		this.el = args['el'] ? $(args['el']) : $('<div>').appendTo(document.body);
 		this.content_url = args['content_url'] ? args['content_url'] : '';
 		this.width = args['width'] ? args['width'] : 'fit-content';
-		this.height = args['width'] ? args['height'] : 'fit-content';
+		this.height = args['height'] ? args['height'] : 'fit-content';
 		
 		// An element can have multiple modals bound to it, we re-use the bu_modal container.
 		this.ui = this.el.parents('.bu_modal');
