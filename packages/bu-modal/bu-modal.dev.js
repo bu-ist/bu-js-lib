@@ -38,7 +38,7 @@ jQuery(document).ready(function($) {
 		this.bindHandlers();
 	};
 
-	BuModal.version = 1.4;
+	BuModal.version = '2.0.6';
 
 	BuModal.bg = $('<div class="bu_modal_bg"></div>').prependTo(document.getElementsByTagName('body')[0]).hide();	
 	BuModal.active_modal = false;
@@ -47,7 +47,7 @@ jQuery(document).ready(function($) {
 		if (BuModal.active_modal) {
 			BuModal.active_modal.close();
 		}
-	}
+	};
 	
 	BuModal.prototype.init = function() {
 		var modal = this;
