@@ -38,7 +38,7 @@ jQuery(document).ready(function($) {
 		this.bindHandlers();
 	};
 
-	BuModal.version = '2.0.6';
+	BuModal.version = '2.0.7';
 
 	BuModal.bg = $('<div class="bu_modal_bg"></div>').prependTo(document.getElementsByTagName('body')[0]).hide();	
 	BuModal.active_modal = false;
