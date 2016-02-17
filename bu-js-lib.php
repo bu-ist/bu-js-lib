@@ -19,7 +19,7 @@ class BU_Javascript_Library {
 
 	public static function register_js( &$scripts ) {
 
-		self::$url = sprintf('%s/mu-plugins/bu-js-lib', WP_CONTENT_URL);
+		self::$url = sprintf('%s/mu-plugins/bu-js-lib', content_url());
 		$js = self::$url . '/js';
 
 		$scripts->add('jquery-qtip', $js . '/jquery.qtip-1.0.0-rc3.min.js', array('jquery'), '1.0.0-rc3');
@@ -33,7 +33,7 @@ class BU_Javascript_Library {
 
 	public static function register_css( &$styles ) {
 
-		self::$url = sprintf('%s/mu-plugins/bu-js-lib', WP_CONTENT_URL);
+		self::$url = sprintf('%s/mu-plugins/bu-js-lib', content_url());
 		$css = self::$url . '/css';
 
 		// Shared jQuery UI stylesheet
