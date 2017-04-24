@@ -24,7 +24,6 @@ class BU_Javascript_Library {
 
 		$scripts->add('jquery-qtip', $js . '/jquery.qtip-1.0.0-rc3.min.js', array('jquery'), '1.0.0-rc3');
 		$scripts->add('jquery-qtip-dev', $js . '/jquery.qtip-1.0.0-rc3.js', array('jquery'), '1.0.0-rc3');
-		$scripts->add('jquery-scroller', $js . '/jquery.tools.scroller.min.js', array('jquery'), '1.1.2', array('group' => 1));
 
 		// Custom BU scripts
 		$scripts->add('nav-autowidth', $js . '/nav-autowidth.js', array('jquery'), BU_JS_LIB_VERSION);
