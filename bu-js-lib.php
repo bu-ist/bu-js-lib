@@ -1,20 +1,29 @@
 <?php
-/*
-Plugin Name: BU Javascript Library
-Plugin URI: http://www.bu.edu/nis
-Description: Manages and registers several shared JavaScript libraries and themes, which may in turn be used by custom BU plugins to provide consistent theming and functionality.
-Author: Boston University (IS&T)
-Author URI: http://www.bu.edu/nis
-Version: 2.0.7
-*/
+/**
+ * Plugin Name: BU Javascript Library
+ * Plugin URI: http://www.bu.edu/nis
+ * Description: Manages and registers several shared JavaScript libraries and themes, which may in turn be used by custom BU plugins to provide consistent theming and functionality.
+ * Author: Boston University (IS&T)
+ * Author URI: http://www.bu.edu/nis
+ * Version: 2.0.7
+ *
+ * @package BU_Javascript_Library
+ */
 
 // This plugin is loaded (use this for graceful degradation).
 define( 'BU_PLUGIN_JAVASCRIPT_LIBRARY', true );
 define( 'BU_JS_LIB_VERSION', '2.0.7' );
 
+/**
+ * Class BU_Javascript_Library
+ */
 class BU_Javascript_Library {
 
-	// This is a blog-specific URL to the bu-js-lib root directory.
+	/**
+	 * This is a blog-specific URL to the bu-js-lib root directory
+	 *
+	 * @var string
+	 */
 	protected static $url;
 
 	/**
@@ -68,9 +77,15 @@ class BU_Javascript_Library {
 		return self::$styles[ $handle ];
 	}
 
+	/**
+	 * Register scripts
+	 *
+	 * @param WP_Scripts $wp_scripts The WP_Scripts object passed in by the wp_default_scripts action hook.
+	 * @return void
+	 */
 	public static function register_js( &$wp_scripts ) {
 
-		self::$url = sprintf('%s/mu-plugins/bu-js-lib', content_url());
+		self::$url = sprintf( '%s/mu-plugins/bu-js-lib', content_url() );
 		$js = self::$url . '/js';
 
 		self::register_script( $wp_scripts, 'jquery-qtip', $js . '/jquery.qtip-1.0.0-rc3.min.js', array( 'jquery' ), '1.0.0-rc3' );
@@ -81,14 +96,20 @@ class BU_Javascript_Library {
 		self::register_script( $wp_scripts, 'bu-modal', self::$url . '/packages/bu-modal/bu-modal.dev.js', array( 'jquery' ), '1.4' );
 	}
 
+	/**
+	 * Register Styles
+	 *
+	 * @param WP_Styles $wp_styles  The WP_Styles object passed in by the wp_default_styles action hook.
+	 * @return void
+	 */
 	public static function register_css( &$wp_styles ) {
 
-		self::$url = sprintf('%s/mu-plugins/bu-js-lib', content_url());
+		self::$url = sprintf( '%s/mu-plugins/bu-js-lib', content_url() );
 		$css = self::$url . '/css';
 
 		// Shared jQuery UI stylesheet
-		// @see http://core.trac.wordpress.org/ticket/18909
-		// @see https://github.com/helenhousandi/wp-admin-jquery-ui
+		// @see http://core.trac.wordpress.org/ticket/18909.
+		// @see https://github.com/helenhousandi/wp-admin-jquery-ui.
 		if ( function_exists( 'is_user_logged_in' ) && is_user_logged_in() && 'classic' == get_user_option( 'admin_color' ) ) {
 			self::register_style( $wp_styles, 'bu-jquery-ui', $css . '/jquery-ui-classic.css', array(), BU_JS_LIB_VERSION );
 		} else {
