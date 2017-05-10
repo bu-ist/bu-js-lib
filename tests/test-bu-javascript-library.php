@@ -49,22 +49,14 @@ class BU_Javascript_Library_Test extends WP_UnitTestCase {
 	 * @return void
 	 */
 	function test_scripts_registered_successfully() {
-		// this will hold all handles that failed to register.
-		$failed = array();
-
 		// get handles that attempted to register.
 		$scripts = BU_Javascript_Library::$scripts;
 
 		// loop through handles.
 		foreach ( $scripts as $handle => $registered ) {
-			// if registration was not successfull.
-			if ( ! ( true === $registered && wp_script_is( $handle, 'registered' ) ) ) {
-				// add handle to the failed array.
-				$failed[] = $handle;
-			}
+			// assert registration was successfull.
+			$this->assertTrue( ( true === $registered && wp_script_is( $handle, 'registered' ) ), "The file {$handle} failed to register" );
 		}
-		// make sure failed array is empty.
-		$this->assertEmpty( $failed, '(' . implode( ', ', $failed ) . ') failed to register' );
 	}
 
 	/**
@@ -73,22 +65,14 @@ class BU_Javascript_Library_Test extends WP_UnitTestCase {
 	 * @return void
 	 */
 	function test_styles_registered_successfully() {
-		// this will hold all handles that failed to register.
-		$failed = array();
-
 		// get handles that attempted to register.
 		$styles = BU_Javascript_Library::$styles;
 
 		// loop through handles.
 		foreach ( $styles as $handle => $registered ) {
-			// if registration was not successfull.
-			if ( ! ( true === $registered && wp_style_is( $handle, 'registered' ) ) ) {
-				// add handle to the failed array.
-				$failed[] = $handle;
-			}
+			// assert registration was successfull.
+			$this->assertTrue( ( true === $registered && wp_style_is( $handle, 'registered' ) ), "The file {$handle} failed to register" );
 		}
-		// make sure failed array is empty.
-		$this->assertEmpty( $failed, '(' . implode( ', ', $failed ) . ') failed to register' );
 	}
 
 	/**
@@ -98,9 +82,6 @@ class BU_Javascript_Library_Test extends WP_UnitTestCase {
 	 */
 	function test_scripts_exist() {
 		global $wp_scripts;
-
-		// this will hold all handles that failed to register.
-		$failed = array();
 
 		// Get plugin absolute path.
 		$plugin_dirname = dirname( dirname( __FILE__ ) );
@@ -116,13 +97,9 @@ class BU_Javascript_Library_Test extends WP_UnitTestCase {
 			$dependency_path_relative_to_plugin_dirname = substr( $dependency->src, ( strpos( $dependency->src, basename( $plugin_dirname ) ) + strlen( basename( $plugin_dirname ) ) ) );
 			// get the dependency absolute path.
 			$dependency_path = $plugin_dirname . $dependency_path_relative_to_plugin_dirname;
-			if ( ! file_exists( $dependency_path ) ) {
-				// add handle to the failed array.
-				$failed[] = $handle;
-			}
+			// assert the file exists.
+			$this->assertFileExists( $dependency_path, "The file {$handle} does not exist" );
 		}
-		// make sure failed array is empty.
-		$this->assertEmpty( $failed, '(' . implode( ', ', $failed ) . ') point to a non-existent file' );
 	}
 
 	/**
@@ -132,9 +109,6 @@ class BU_Javascript_Library_Test extends WP_UnitTestCase {
 	 */
 	function test_styles_exist() {
 		global $wp_styles;
-
-		// this will hold all handles that failed to register.
-		$failed = array();
 
 		// Get plugin absolute path.
 		$plugin_dirname = dirname( dirname( __FILE__ ) );
@@ -147,12 +121,8 @@ class BU_Javascript_Library_Test extends WP_UnitTestCase {
 			$dependency = $wp_styles->registered[ $handle ];
 			$dependency_path_relative_to_plugin_dirname = substr( $dependency->src, ( strpos( $dependency->src, basename( $plugin_dirname ) ) + strlen( basename( $plugin_dirname ) ) ) );
 			$dependency_path = $plugin_dirname . $dependency_path_relative_to_plugin_dirname;
-			if ( ! file_exists( $dependency_path ) ) {
-				// add handle to the failed array.
-				$failed[] = $handle;
-			}
+			// assert the file exists.
+			$this->assertFileExists( $dependency_path, "The file {$handle} does not exist" );
 		}
-		// make sure failed array is empty.
-		$this->assertEmpty( $failed, '(' . implode( ', ', $failed ) . ') point to a non-existent file' );
 	}
 }
