@@ -41,10 +41,28 @@ module.exports = function( grunt ) {
 				}
 			}
 		},
+
+		exec: {
+			phpunit: 'phpunit'
+		},
+
+		watch: {
+			phpunit: {
+				files: ['**/*.php'],
+				tasks: ['exec:phpunit'],
+				options: {
+					interrupt: true,
+					atBegin: true
+				}
+			}
+		}
+
 	} );
 
 	grunt.loadNpmTasks( 'grunt-wp-i18n' );
 	grunt.loadNpmTasks( 'grunt-wp-readme-to-markdown' );
+	grunt.loadNpmTasks('grunt-exec');
+	grunt.loadNpmTasks('grunt-contrib-watch');
 	grunt.registerTask( 'i18n', ['addtextdomain', 'makepot'] );
 	grunt.registerTask( 'readme', ['wp_readme_to_markdown'] );
 
