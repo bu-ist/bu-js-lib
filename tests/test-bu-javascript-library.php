@@ -6,7 +6,7 @@
  */
 
 /**
- * Test BU_Javascript_Library script/style registering
+ * Test BU_Javascript_Library script/stylesheet registering
  */
 class BU_Javascript_Library_Test extends WP_UnitTestCase {
 
@@ -60,11 +60,11 @@ class BU_Javascript_Library_Test extends WP_UnitTestCase {
 	}
 
 	/**
-	 * Check if all styles registered successfully
+	 * Check if all stylesheets registered successfully
 	 *
 	 * @return void
 	 */
-	function test_styles_registered_successfully() {
+	function test_stylesheets_registered_successfully() {
 		// get handles that attempted to register.
 		$styles = BU_Javascript_Library::$styles;
 
@@ -103,11 +103,11 @@ class BU_Javascript_Library_Test extends WP_UnitTestCase {
 	}
 
 	/**
-	 * Make sure that every style actually points to an existing file
+	 * Make sure that every stylesheet actually points to an existing file
 	 *
 	 * @return void
 	 */
-	function test_styles_exist() {
+	function test_stylesheets_exist() {
 		global $wp_styles;
 
 		// Get plugin absolute path.
@@ -118,8 +118,11 @@ class BU_Javascript_Library_Test extends WP_UnitTestCase {
 
 		// loop through handles.
 		foreach ( $styles as $handle => $registered ) {
+			// get the WP_Dependency.
 			$dependency = $wp_styles->registered[ $handle ];
+			// find the dependency relative path to the plugin directory.
 			$dependency_path_relative_to_plugin_dirname = substr( $dependency->src, ( strpos( $dependency->src, basename( $plugin_dirname ) ) + strlen( basename( $plugin_dirname ) ) ) );
+			// get the dependency absolute path.
 			$dependency_path = $plugin_dirname . $dependency_path_relative_to_plugin_dirname;
 			// assert the file exists.
 			$this->assertFileExists( $dependency_path, "The file {$handle} does not exist" );
