@@ -29,3 +29,8 @@ wp_enqueue_style( 'stylesheet-handle' );
 
 - `bu-jquery-ui`
 - `bu-modal`
+
+# BU Modal #
+The BU Modal jQuery library is included with this plugin.
+
+Its documentation can be found in the wiki: [BU Modal documentation](https://github.com/bu-ist/bu-js-lib/wiki/BU-Modal)
