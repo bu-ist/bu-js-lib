@@ -3,8 +3,8 @@ services:
   wptest:
     image: carlosesilva/wp-phpunit-xdebug:${WPDC_IMAGE_TAG-latest}
     volumes:
-      - .:/code
-    working_dir: /code
+      - .:/code/mu-plugins/bu-js-lib
+    working_dir: /code/mu-plugins/bu-js-lib
   mysql:
     image: mysql:5.7
     environment:
