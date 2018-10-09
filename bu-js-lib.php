@@ -5,14 +5,14 @@
  * Description: Manages and registers several shared JavaScript libraries and themes, which may in turn be used by custom BU plugins to provide consistent theming and functionality.
  * Author: Boston University (IS&T)
  * Author URI: http://www.bu.edu/nis
- * Version: 2.1
+ * Version: 2.1.1
  *
  * @package BU_Javascript_Library
  */
 
 // This plugin is loaded (use this for graceful degradation).
 define( 'BU_PLUGIN_JAVASCRIPT_LIBRARY', true );
-define( 'BU_JS_LIB_VERSION', '2.1' );
+define( 'BU_JS_LIB_VERSION', '2.1.1' );
 
 /**
  * Class BU_Javascript_Library
@@ -93,8 +93,8 @@ class BU_Javascript_Library {
 
 		// Custom BU scripts.
 		self::register_script( $wp_scripts, 'nav-autowidth', $js . '/nav-autowidth.js', array( 'jquery' ), BU_JS_LIB_VERSION );
-		self::register_script( $wp_scripts, 'bu-modal', self::$url . '/packages/bu-modal/bu-modal.js', array( 'jquery' ), '1.4' );
-		self::register_script( $wp_scripts, 'bu-modal-dev', self::$url . '/packages/bu-modal/bu-modal.dev.js', array( 'jquery' ), '1.4' );
+		self::register_script( $wp_scripts, 'bu-modal', self::$url . '/packages/bu-modal/bu-modal.js', array( 'jquery' ), '2.0.8' );
+		self::register_script( $wp_scripts, 'bu-modal-dev', self::$url . '/packages/bu-modal/bu-modal.dev.js', array( 'jquery' ), '2.0.8' );
 	}
 
 	/**
