@@ -26,7 +26,9 @@ jQuery(document).ready(function($) {
 		this.ui = this.el.parents('.bu_modal');
 		if (!this.ui.length) {
 			this.el.wrap('<div class="bu_modal" style="display:none;"></div>');
-			this.el.before('<div class="postboxheader"><a class="close_btn" href="">X</a></div>');
+			if (!this.el.hasClass('permanent')) {
+				this.el.before('<div class="postboxheader"><a class="close_btn" href="">X</a></div>');
+			}
 			this.ui = this.el.parents('.bu_modal');
 		}
 		
@@ -135,18 +137,20 @@ jQuery(document).ready(function($) {
 	};
 	
 	BuModal.prototype.close = function() {
-		this.beforeClose();
-
-		if (this.xhr) {
-			this.xhr.abort();
-			this.xhr = false;
+		if (!this.el.hasClass('permanent')) {
+			this.beforeClose();
+			
+			if (this.xhr) {
+				this.xhr.abort();
+				this.xhr = false;
+			}
+			this.ui.removeClass('active').hide();
+			this.ui.bg.hide();
+			this.isOpen = false;
+			BuModal.active_modal = false;
+			
+			this.afterClose();
 		}
-		this.ui.removeClass('active').hide();
-		this.ui.bg.hide();
-		this.isOpen = false;
-		BuModal.active_modal = false;
-
-		this.afterClose();
 	};
 	
 });
