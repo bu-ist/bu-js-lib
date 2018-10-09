@@ -93,8 +93,8 @@ class BU_Javascript_Library {
 
 		// Custom BU scripts.
 		self::register_script( $wp_scripts, 'nav-autowidth', $js . '/nav-autowidth.js', array( 'jquery' ), BU_JS_LIB_VERSION );
-		self::register_script( $wp_scripts, 'bu-modal', self::$url . '/packages/bu-modal/bu-modal.js', array( 'jquery' ), '1.4' );
-		self::register_script( $wp_scripts, 'bu-modal-dev', self::$url . '/packages/bu-modal/bu-modal.dev.js', array( 'jquery' ), '1.4' );
+		self::register_script( $wp_scripts, 'bu-modal', self::$url . '/packages/bu-modal/bu-modal.js', array( 'jquery' ), '2.0.8' );
+		self::register_script( $wp_scripts, 'bu-modal-dev', self::$url . '/packages/bu-modal/bu-modal.dev.js', array( 'jquery' ), '2.0.8' );
 	}
 
 	/**
